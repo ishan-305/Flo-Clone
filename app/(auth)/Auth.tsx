@@ -44,7 +44,7 @@ export default function Auth() {
   }
 
   if (loading) {
-    return <CalculatingScreen navigation={useNavigation()} />;
+    return <CalculatingScreen navigation={navigation} />;
   }
 
   async function signUpWithEmail() {
