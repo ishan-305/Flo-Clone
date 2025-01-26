@@ -49,7 +49,7 @@ const Tweet = () => (
   <View style={styles.tweetContainer}>
     <View style={styles.tweetHeader}>
       <Image
-        source={{ uri: "https://placeholder.svg?height=40&width=40" }}
+        source={require("../../assets/user_ex.png")}
         style={styles.profileImage}
       />
       <View style={styles.tweetUserInfo}>
@@ -57,7 +57,7 @@ const Tweet = () => (
         <Text style={styles.userHandle}>@_meganjaay_</Text>
       </View>
       <Image
-        source={{ uri: "https://placeholder.svg?height=20&width=20" }}
+        source={require("../../assets/twitter.png")}
         style={styles.twitterIcon}
       />
     </View>

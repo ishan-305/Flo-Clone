@@ -1,8 +1,9 @@
-import { Redirect, useNavigation } from "expo-router";
+import { Redirect, useNavigation, useRouter } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const App = () => {
+  const router = useRouter();
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -24,7 +25,10 @@ const App = () => {
           />
           <Text style={styles.buttonText}>Continue with Google</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.push("/(auth)/Auth")}
+        >
           <Image
             source={require("../../assets/email-icon.png")}
             style={styles.icon}
@@ -68,19 +72,21 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "grey",
+    backgroundColor: "#f2f2f2",
     padding: 15,
     borderRadius: 120,
     marginBottom: 10,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 22,
+    height: 22,
     marginRight: 10,
   },
   buttonText: {
-    color: "#fff",
+    color: "#010101",
     fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 
