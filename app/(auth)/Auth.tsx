@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
 import { supabase } from "../lib/supabase";
 import { Button, Input } from "@rneui/themed";
+import CalculatingScreen from "../(tabs)/CalculatingAnimation";
 
 AppState.addEventListener("change", (state) => {
   if (state === "active") {
@@ -24,7 +25,7 @@ AppState.addEventListener("change", (state) => {
 });
 
 export default function Auth() {
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +41,10 @@ export default function Auth() {
 
     if (error) Alert.alert("Sign In Error", error.message);
     setLoading(false);
+  }
+
+  if (loading) {
+    return <CalculatingScreen navigation={useNavigation()} />;
   }
 
   async function signUpWithEmail() {
@@ -65,7 +70,7 @@ export default function Auth() {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => router.push("/(tabs)/Privacy")}
+          onPress={() => navigation.goBack()}
         >
           <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>

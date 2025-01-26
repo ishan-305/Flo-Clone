@@ -13,7 +13,7 @@ import BottomNavBar from "../../src/copmponents/BottomNavBar";
 
 const InsightsScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: "#ffe6e6" }]}>
       <View style={styles.header}>
         <View style={styles.searchBar}>
           <Icon name="search" size={20} color="#999" />
@@ -56,16 +56,16 @@ const InsightsScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
-              <View style={styles.articleImage}>
+              <View style={styles.articleImage3}>
                 <Text style={styles.articleImageText}>
-                  How to clean your vulva
+                  How to get rid of vaginal odor
                 </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
-              <View style={styles.articleImage}>
+              <View style={styles.articleImage2}>
                 <Text style={styles.articleImageText}>
-                  How to clean your vulva
+                  How to avoid yeast infections
                 </Text>
               </View>
             </TouchableOpacity>
@@ -91,57 +91,57 @@ const InsightsScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
-              <View style={[styles.articleImage, styles.pinkBackground]}>
+              <View style={[styles.articleImage, styles.yellowBackground]}>
                 <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
+                  10 mind-blowing orgasm facts
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.orangeBackground]}>
+                <Text style={styles.articleImageText}>
+                  How to give your partner an orgasm
                 </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
               <View style={[styles.articleImage, styles.pinkBackground]}>
                 <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.articleCard}>
-              <View style={[styles.articleImage, styles.pinkBackground]}>
-                <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
+                  The best sex positions for orgasm
                 </Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
         </View>
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Sex</Text>
+          <Text style={styles.sectionTitle}>In Your Early Cycle</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <TouchableOpacity style={styles.articleCard}>
-              <View style={[styles.articleImage, styles.darkBackground]}>
+              <View style={[styles.articleImage, styles.ldarkBackground]}>
                 <Icon name="play-circle" size={24} color="#fff" />
                 <Text style={styles.articleImageText}>
-                  Mastering your orgasm
+                  Boost your mood with exercise
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.dpinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  How to get rid of bloating
                 </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
               <View style={[styles.articleImage, styles.pinkBackground]}>
                 <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
+                  Reduce cramps with heat
                 </Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
-              <View style={[styles.articleImage, styles.pinkBackground]}>
+              <View style={[styles.articleImage, styles.purpleBackground]}>
                 <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.articleCard}>
-              <View style={[styles.articleImage, styles.pinkBackground]}>
-                <Text style={styles.articleImageText}>
-                  9 life-changing masturbation tips
+                  10 foods that banish bloating
                 </Text>
               </View>
             </TouchableOpacity>
@@ -232,30 +232,51 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   articleCard: {
-    width: 150,
-    height: 150,
+    width: 160,
+    height: 190,
     marginRight: 15,
     borderRadius: 15,
     overflow: "hidden",
   },
   articleImage: {
     flex: 1,
-    backgroundColor: "#E8F5E9",
+    backgroundColor: "#c740b7",
+    padding: 15,
+    justifyContent: "flex-end",
+  },
+  articleImage2: {
+    flex: 1,
+    backgroundColor: "#73adc9",
+    padding: 15,
+    justifyContent: "flex-end",
+  },
+  articleImage3: {
+    flex: 1,
+    backgroundColor: "#b1c973",
     padding: 15,
     justifyContent: "flex-end",
   },
   purpleBackground: {
-    backgroundColor: "#EDE7F6",
+    backgroundColor: "#c5b4de",
   },
   dpinkBackground: {
-    backgroundColor: "#EDE7F6",
+    backgroundColor: "#d48aca",
   },
   blueBackground: {
-    backgroundColor: "#EDE7F6",
+    backgroundColor: "#3489eb",
+  },
+  yellowBackground: {
+    backgroundColor: "#d4d492",
+  },
+  orangeBackground: {
+    backgroundColor: "#bfaba4",
   },
 
   darkBackground: {
     backgroundColor: "grey",
+  },
+  ldarkBackground: {
+    backgroundColor: "#a4bfbc",
   },
   pinkBackground: {
     backgroundColor: "#FFE8EC",

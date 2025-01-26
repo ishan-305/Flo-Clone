@@ -9,13 +9,15 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
+import { insertIntoProfilesTable } from "../DBFunctions/Insert";
+import { useNavigation } from "expo-router";
 
 export default function App() {
   const [viewMode, setViewMode] = useState("Month");
-  const [selectedDates, setSelectedDates] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
-
-  const weekDays = ["M", "T", "W", "T", "F", "S", "S"];
+  const navigation = useNavigation();
+  const weekDays = ["M", "T", "W", "T", "F", "S", "Su"];
 
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -46,16 +48,16 @@ export default function App() {
 
   const toggleDateSelection = (date: Date) => {
     const dateStr = formatDate(date);
-    if (selectedDates.includes(dateStr)) {
-      setSelectedDates(selectedDates.filter((d) => d !== dateStr));
+    if (selectedDate === dateStr) {
+      setSelectedDate(null);
     } else {
-      setSelectedDates([...selectedDates, dateStr]);
+      setSelectedDate(dateStr);
     }
   };
 
   const handleEditPeriodDates = () => {
-    console.log("Selected dates:", selectedDates);
-    // Here you can handle the selected dates
+    console.log("Selected date:", selectedDate);
+    // Here you can handle the selected date
   };
 
   const renderMonth = (monthDate: Date) => {
@@ -80,7 +82,7 @@ export default function App() {
                 return <View key={`empty-${index}`} style={styles.emptyDay} />;
 
               const isToday = date.toDateString() === today.toDateString();
-              const isSelected = selectedDates.includes(formatDate(date));
+              const isSelected = selectedDate === formatDate(date);
 
               return (
                 <TouchableOpacity
@@ -118,7 +120,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => {}} style={styles.closeButton}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.closeButton}
+        >
           <Ionicons name="close" size={24} color="#000" />
         </TouchableOpacity>
         <View style={styles.viewToggle}>
@@ -164,7 +169,9 @@ export default function App() {
 
       <TouchableOpacity
         style={styles.editButton}
-        onPress={handleEditPeriodDates}
+        onPress={() => {
+          handleEditPeriodDates();
+        }}
       >
         <Text style={styles.editButtonText}>Edit period dates</Text>
       </TouchableOpacity>

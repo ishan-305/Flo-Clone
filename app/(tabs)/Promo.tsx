@@ -99,7 +99,7 @@ export default function IntroScreen() {
 
           <TouchableOpacity
             style={styles.nextButton}
-            onPress={() => router.push("/(tabs)/Privacy")}
+            onPress={() => router.push("/(tabs)/welcome")}
           >
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>

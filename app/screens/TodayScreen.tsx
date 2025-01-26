@@ -37,6 +37,7 @@ const TodayScreen = () => {
 
       <ScrollView>
         {/* Calendar Section */}
+
         <Calendar
           markedDates={{
             "2024-01-24": { selected: true, selectedColor: "#FF4B8C" },
@@ -45,6 +46,7 @@ const TodayScreen = () => {
             selectedDayBackgroundColor: "#FF4B8C",
             todayTextColor: "#FF4B8C",
             arrowColor: "#FF4B8C",
+            backgroundColor: "transparent",
           }}
         />
 
@@ -130,7 +132,7 @@ const TodayScreen = () => {
         >
           <TouchableOpacity style={styles.articleCard}>
             <Image
-              source={{ uri: "/placeholder.svg?height=200&width=200" }}
+              source={require("../../assets/ss1.png")}
               style={styles.articleImage}
             />
             <Text style={styles.articleTitle}>
@@ -141,7 +143,7 @@ const TodayScreen = () => {
 
           <TouchableOpacity style={styles.articleCard}>
             <Image
-              source={{ uri: "/placeholder.svg?height=200&width=200" }}
+              source={require("../../assets/ss2.png")}
               style={styles.articleImage}
             />
             <Text style={styles.articleTitle}>
@@ -228,6 +230,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15,
     paddingHorizontal: 16,
+  },
+  calendarContainer: {
+    backgroundColor: "#FFD6E5",
+    padding: 16,
+    borderRadius: 20,
   },
   insightCard: {
     backgroundColor: "#F5F5F5",
