@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 interface CheckboxProps {
   checked: boolean;
@@ -48,6 +49,8 @@ export default function PrivacyScreen({ navigation }) {
       tracking: true,
     });
   };
+
+  const router = useRouter();
 
   return (
     <ScrollView style={styles.container}>
@@ -114,7 +117,7 @@ export default function PrivacyScreen({ navigation }) {
         <TouchableOpacity
           style={[styles.nextButton, !allChecked && styles.nextButtonDisabled]}
           disabled={!allChecked}
-          onPress={() => navigation.navigate("NextScreen")}
+          onPress={() => router.push("/(auth)/Auth")}
         >
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>

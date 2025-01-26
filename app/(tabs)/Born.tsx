@@ -8,7 +8,7 @@ import {
   Animated,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Button } from "./Button";
+import { Button } from "../../src/copmponents/Button";
 
 const ITEM_HEIGHT = 60;
 const YEARS = Array.from({ length: 80 }, (_, i) => ({

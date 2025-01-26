@@ -9,13 +9,13 @@ import {
   Dimensions,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { router, useNavigation, useRouter } from "expo-router";
 
 const { width } = Dimensions.get("window");
 
 const Calendar = () => {
   const days = ["M", "TODAY", "W", "T", "F", "S", "S"];
   const dates = ["7", "8", "9", "10", "11", "12", "13"];
-
   return (
     <View style={styles.calendarContainer}>
       <View style={styles.daysRow}>
@@ -70,7 +70,10 @@ const Tweet = () => (
   </View>
 );
 
-export default function IntroScreen({ navigation }) {
+export default function IntroScreen() {
+  const navigation = useNavigation();
+  const router = useRouter();
+
   return (
     <ScrollView style={styles.container}>
       <LinearGradient colors={["#fff", "#ffe5e5"]} style={styles.gradient}>
@@ -96,7 +99,7 @@ export default function IntroScreen({ navigation }) {
 
           <TouchableOpacity
             style={styles.nextButton}
-            onPress={() => navigation.navigate("Privacy")}
+            onPress={() => router.push("/(tabs)/Privacy")}
           >
             <Text style={styles.nextButtonText}>Next</Text>
           </TouchableOpacity>
