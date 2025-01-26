@@ -2,90 +2,196 @@ import React from "react";
 import {
   View,
   Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
+  ScrollView,
+  Image,
   TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Icon from "react-native-vector-icons/Feather";
+import { Ionicons } from "@expo/vector-icons";
 import BottomNavBar from "../../src/copmponents/BottomNavBar";
 
-const SecretChatsScreen = () => {
-  const chats = [
-    {
-      id: "1",
-      title: "Period Support Group",
-      lastMessage: "Anyone else experiencing heavy flow?",
-      time: "2m ago",
-      unread: 3,
-    },
-    {
-      id: "2",
-      title: "Pregnancy Chat",
-      lastMessage: "Congratulations! When are you due?",
-      time: "1h ago",
-      unread: 1,
-    },
-    {
-      id: "3",
-      title: "Menopause Support",
-      lastMessage: "Here are some tips that helped me...",
-      time: "3h ago",
-      unread: 0,
-    },
-  ];
-
+export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Secret Chats</Text>
+        <Image
+          source={{
+            uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+          }}
+          style={styles.profileIcon}
+        />
+        <View style={styles.searchContainer}>
+          <Ionicons name="search" size={20} color="#999" />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search"
+            placeholderTextColor="#999"
+          />
+        </View>
         <TouchableOpacity>
-          <Icon name="edit" size={24} color="#FF4B8C" />
+          <Ionicons name="notifications-outline" size={24} color="#000" />
         </TouchableOpacity>
       </View>
 
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBar}>
-          <Icon name="search" size={20} color="#999" />
-          <TextInput placeholder="Search chats" style={styles.searchInput} />
-        </View>
-      </View>
-
-      <FlatList
-        data={chats}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.chatItem}>
-            <View style={styles.chatIcon}>
-              <Icon name="users" size={24} color="#FF4B8C" />
-            </View>
-            <View style={styles.chatContent}>
-              <View style={styles.chatHeader}>
-                <Text style={styles.chatTitle}>{item.title}</Text>
-                <Text style={styles.chatTime}>{item.time}</Text>
-              </View>
-              <View style={styles.chatFooter}>
-                <Text style={styles.lastMessage} numberOfLines={1}>
-                  {item.lastMessage}
-                </Text>
-                {item.unread > 0 && (
-                  <View style={styles.unreadBadge}>
-                    <Text style={styles.unreadText}>{item.unread}</Text>
-                  </View>
-                )}
-              </View>
-            </View>
+      <ScrollView style={styles.content}>
+        <View style={styles.tabsContainer}>
+          <TouchableOpacity style={[styles.tab, styles.activeTab]}>
+            <Text style={[styles.tabText, styles.activeTabText]}>Popular</Text>
           </TouchableOpacity>
-        )}
-      />
-      <BottomNavBar
-        currentScreen="SecretChats"
-        onScreenChange={(screen) => console.log(screen)}
-      />
+          <View style={{ width: 10 }} />
+          <TouchableOpacity style={styles.tab}>
+            <Text style={styles.tabText}>Following</Text>
+          </TouchableOpacity>
+          <View style={{ width: 10 }} />
+          <TouchableOpacity style={styles.tab}>
+            <Text style={styles.tabText}>Saved</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.post}>
+          <View style={styles.postHeader}>
+            <View style={styles.postHeaderLeft}>
+              <Image
+                source={{
+                  uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+                }}
+                style={styles.postProfilePic}
+              />
+              <Text style={styles.postAuthor}>Weight Journey</Text>
+            </View>
+            <View style={styles.postHeaderRight}>
+              <TouchableOpacity style={styles.followButton}>
+                <Text style={styles.followButtonText}>Follow</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Ionicons name="ellipsis-horizontal" size={20} color="#666" />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <Image
+            source={{
+              uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+            }}
+            style={styles.postImage}
+          />
+
+          <Text style={styles.postTitle}>
+            Fad diets: If you've ever tried one, did it work for you?
+          </Text>
+
+          <View style={styles.engagementContainer}>
+            <View style={styles.engagementLeft}>
+              <TouchableOpacity style={styles.engagementItem}>
+                <Ionicons name="heart-outline" size={24} color="#000" />
+                <Text style={styles.engagementText}>2K</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.engagementItem}>
+                <Ionicons name="chatbubble-outline" size={24} color="#000" />
+                <Text style={styles.engagementText}>2.1K</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity>
+              <Ionicons name="bookmark-outline" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.commentContainer}>
+            <Image
+              source={{
+                uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+              }}
+              style={styles.commentAvatar}
+            />
+            <View style={styles.commentContent}>
+              <Text style={styles.commentText}>
+                If you want to lose weight, it's not rocket science, go into a
+                calorie deficit. Slowly. That's it. It's boring but that's all
+                there is to it.
+              </Text>
+            </View>
+          </View>
+
+          <TouchableOpacity>
+            <Text style={styles.viewAllComments}>View all 2.1K comments</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.post}>
+          <View style={styles.postHeader}>
+            <View style={styles.postHeaderLeft}>
+              <Image
+                source={{
+                  uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+                }}
+                style={styles.postProfilePic}
+              />
+              <Text style={styles.postAuthor}>Weight Journey</Text>
+            </View>
+            <View style={styles.postHeaderRight}>
+              <TouchableOpacity style={styles.followButton}>
+                <Text style={styles.followButtonText}>Follow</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Ionicons name="ellipsis-horizontal" size={20} color="#666" />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <Image
+            source={{
+              uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+            }}
+            style={styles.postImage}
+          />
+
+          <Text style={styles.postTitle}>
+            Fad diets: If you've ever tried one, did it work for you?
+          </Text>
+
+          <View style={styles.engagementContainer}>
+            <View style={styles.engagementLeft}>
+              <TouchableOpacity style={styles.engagementItem}>
+                <Ionicons name="heart-outline" size={24} color="#000" />
+                <Text style={styles.engagementText}>2K</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.engagementItem}>
+                <Ionicons name="chatbubble-outline" size={24} color="#000" />
+                <Text style={styles.engagementText}>2.1K</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity>
+              <Ionicons name="bookmark-outline" size={24} color="#000" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.commentContainer}>
+            <Image
+              source={{
+                uri: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hello.jpg-BoHAHjhXS5DEmm9SdrEKJ9yMmdj2Ps.jpeg",
+              }}
+              style={styles.commentAvatar}
+            />
+            <View style={styles.commentContent}>
+              <Text style={styles.commentText}>
+                If you want to lose weight, it's not rocket science, go into a
+                calorie deficit. Slowly. That's it. It's boring but that's all
+                there is to it.
+              </Text>
+            </View>
+          </View>
+
+          <TouchableOpacity>
+            <Text style={styles.viewAllComments}>View all 2.1K comments</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <BottomNavBar />
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -94,87 +200,147 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
     padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    gap: 10,
   },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
+  profileIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
   },
   searchContainer: {
-    padding: 15,
-  },
-  searchBar: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
-    paddingHorizontal: 15,
-    borderRadius: 20,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 10,
+    paddingHorizontal: 10,
     height: 40,
   },
   searchInput: {
     flex: 1,
     marginLeft: 10,
+    fontSize: 16,
   },
-  chatItem: {
+  content: {
+    flex: 1,
+  },
+  tabsContainer: {
     flexDirection: "row",
     padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    gap: 10,
   },
-  chatIcon: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: "#FFE8EC",
-    justifyContent: "center",
-    alignItems: "center",
+  tab: {
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    backgroundColor: "#f0f0f0",
   },
-  chatContent: {
-    flex: 1,
-    marginLeft: 15,
+  activeTab: {
+    backgroundColor: "#FF4B8C",
   },
-  chatHeader: {
+  tabText: {
+    color: "#666",
+    fontSize: 16,
+  },
+  activeTabText: {
+    color: "#fff",
+  },
+  post: {
+    padding: 15,
+  },
+  postHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 15,
   },
-  chatTitle: {
+  postHeaderLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  postHeaderRight: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
+  postProfilePic: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  postAuthor: {
     fontSize: 16,
     fontWeight: "600",
   },
-  chatTime: {
-    fontSize: 12,
-    color: "#999",
+  followButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 15,
   },
-  chatFooter: {
+  followButtonText: {
+    color: "#00BCD4",
+    fontSize: 16,
+    fontWeight: "500",
+  },
+  postImage: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  postTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "#fff",
+    position: "absolute",
+    bottom: 100,
+    left: 30,
+    right: 30,
+  },
+  engagementContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 5,
+    marginBottom: 15,
   },
-  lastMessage: {
-    flex: 1,
-    fontSize: 14,
+  engagementLeft: {
+    flexDirection: "row",
+    gap: 20,
+  },
+  engagementItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+  },
+  engagementText: {
+    fontSize: 16,
     color: "#666",
   },
-  unreadBadge: {
-    backgroundColor: "#FF4B8C",
+  commentContainer: {
+    flexDirection: "row",
+    gap: 10,
+    backgroundColor: "#f0f0f0",
+    padding: 15,
     borderRadius: 10,
-    minWidth: 20,
-    height: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 10,
+    marginBottom: 15,
   },
-  unreadText: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "bold",
+  commentAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+  },
+  commentContent: {
+    flex: 1,
+  },
+  commentText: {
+    fontSize: 16,
+    lineHeight: 22,
+  },
+  viewAllComments: {
+    color: "#00BCD4",
+    fontSize: 16,
   },
 });
-
-export default SecretChatsScreen;

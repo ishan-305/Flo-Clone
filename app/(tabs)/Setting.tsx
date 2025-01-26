@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   View,
@@ -7,8 +7,11 @@ import {
   StyleSheet,
   Image,
   SafeAreaView,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
+import { supabase } from "../lib/supabase";
 
 export default function ProfileScreen() {
   const menuItems = [
@@ -18,14 +21,35 @@ export default function ProfileScreen() {
     { icon: "shield", title: "Privacy settings" },
     { icon: "lock-closed", title: "Access code" },
     { icon: "notifications", title: "Reminders" },
-    { icon: "help-circle", title: "Help" },
+    { icon: "log-out", title: "Log Out" },
   ];
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setUser(user.username);
+      } else {
+        Alert.alert("No user found");
+      }
+    });
+  }, []);
+  const navigation = useNavigation();
+
+  const doLogOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      Alert.alert("Error logging out", error.message);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* Header */}
-        <TouchableOpacity style={styles.closeButton}>
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => navigation.goBack()}
+        >
           <Ionicons name="close" size={28} color="#000" />
         </TouchableOpacity>
 
@@ -33,11 +57,11 @@ export default function ProfileScreen() {
         <View style={styles.profileCard}>
           <View style={styles.profileInfo}>
             <Image
-              source={{ uri: "https://placeholder.svg?height=50&width=50" }}
+              source={require("../../assets/avatar_women.png")}
               style={styles.avatar}
             />
             <View>
-              <Text style={styles.profileName}>No account</Text>
+              <Text style={styles.profileName}>Demo User</Text>
               <TouchableOpacity>
                 <Text style={styles.editInfo}>Edit info</Text>
               </TouchableOpacity>
@@ -71,7 +95,11 @@ export default function ProfileScreen() {
         {/* Menu Items */}
         <View style={styles.menuContainer}>
           {menuItems.map((item, index) => (
-            <TouchableOpacity key={index} style={styles.menuItem}>
+            <TouchableOpacity
+              key={index}
+              style={styles.menuItem}
+              onPress={item.title === "Log Out" ? doLogOut : undefined}
+            >
               <View style={styles.menuItemContent}>
                 <Ionicons
                   name={item.icon}

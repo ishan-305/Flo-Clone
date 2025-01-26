@@ -32,10 +32,10 @@ const InsightsScreen = () => {
           <TouchableOpacity style={[styles.tab, styles.activeTab]}>
             <Text style={[styles.tabText, styles.activeTabText]}>Popular</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tab}>
+          <TouchableOpacity style={[styles.tab, { marginHorizontal: 50 }]}>
             <Text style={styles.tabText}>Following</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tab}>
+          <TouchableOpacity style={[styles.tab, { marginHorizontal: 50 }]}>
             <Text style={styles.tabText}>Saved</Text>
           </TouchableOpacity>
         </View>
@@ -68,6 +68,20 @@ const InsightsScreen = () => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.articleCard}>
+              <View style={styles.articleImage}>
+                <Text style={styles.articleImageText}>
+                  How to clean your vulva
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={styles.articleImage}>
+                <Text style={styles.articleImageText}>
+                  How to clean your vulva
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
               <View style={[styles.articleImage, styles.purpleBackground]}>
                 <Text style={styles.articleImageText}>
                   Vaginal discharge color guide
@@ -85,6 +99,20 @@ const InsightsScreen = () => {
                 <Icon name="play-circle" size={24} color="#fff" />
                 <Text style={styles.articleImageText}>
                   Mastering your orgasm
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.pinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  9 life-changing masturbation tips
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.pinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  9 life-changing masturbation tips
                 </Text>
               </View>
             </TouchableOpacity>
@@ -150,6 +178,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: 16,
     color: "#666",
+    fontWeight: "800",
   },
   activeTabText: {
     color: "#FF4B8C",
@@ -180,7 +209,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   articleCard: {
-    width: 250,
+    width: 150,
     height: 150,
     marginRight: 15,
     borderRadius: 15,
@@ -195,8 +224,15 @@ const styles = StyleSheet.create({
   purpleBackground: {
     backgroundColor: "#EDE7F6",
   },
+  dpinkBackground: {
+    backgroundColor: "#EDE7F6",
+  },
+  blueBackground: {
+    backgroundColor: "#EDE7F6",
+  },
+
   darkBackground: {
-    backgroundColor: "#263238",
+    backgroundColor: "grey",
   },
   pinkBackground: {
     backgroundColor: "#FFE8EC",

@@ -7,15 +7,55 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StatusBar,
+  Alert,
+  AppState,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
+import { supabase } from "../lib/supabase";
+import { Button, Input } from "@rneui/themed";
 
-export default function App() {
-  const navigation = useNavigation();
+AppState.addEventListener("change", (state) => {
+  if (state === "active") {
+    supabase.auth.startAutoRefresh();
+  } else {
+    supabase.auth.stopAutoRefresh();
+  }
+});
+
+export default function Auth() {
+  // const navigation = useNavigation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  async function signInWithEmail() {
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) Alert.alert("Sign In Error", error.message);
+    setLoading(false);
+  }
+
+  async function signUpWithEmail() {
+    setLoading(true);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
+
+    if (error) Alert.alert("Sign Up Error", error.message);
+
+    setLoading(false);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,7 +65,7 @@ export default function App() {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => router.push("/(tabs)/Privacy")}
         >
           <Ionicons name="chevron-back" size={24} color="black" />
         </TouchableOpacity>
@@ -57,10 +97,16 @@ export default function App() {
       </View>
 
       {/* Main Content */}
+
       <View style={styles.content}>
-        {isLogin && (
+        {isLogin ? (
           <Text style={styles.restoreText}>
             To restore data,{"\n"}you need to log in to your account.
+          </Text>
+        ) : (
+          <Text style={styles.restoreText}>
+            Get Registered so your details won't be lost if you change your
+            device.
           </Text>
         )}
 
@@ -81,11 +127,20 @@ export default function App() {
             secureTextEntry
           />
 
-          <TouchableOpacity>
-            <Text style={styles.forgotPassword}>Forgot your password?</Text>
-          </TouchableOpacity>
+          {isLogin ? (
+            <TouchableOpacity>
+              <Text style={styles.forgotPassword}>Forgot your password?</Text>
+            </TouchableOpacity>
+          ) : (
+            <Text style={styles.forgotPassword}>
+              Your Password must contain 6 Letters including numbers.
+            </Text>
+          )}
 
-          <TouchableOpacity style={styles.submitButton}>
+          <TouchableOpacity
+            style={styles.submitButton}
+            onPress={isLogin ? signInWithEmail : signUpWithEmail}
+          >
             <Text style={styles.submitButtonText}>
               {isLogin ? "LOG IN" : "SIGN UP"}
             </Text>
