@@ -30,7 +30,7 @@ export default function CalculatingScreen({ navigation }) {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("NextScreen")}
+          onPress={() => navigation.navigate("/(tabs)/TodayScreen")}
         >
           <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>

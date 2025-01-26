@@ -152,7 +152,7 @@ export default function App() {
         );
 
       case 4:
-        return <Redirect href={"/(auth)/Auth"} />;
+        return <Redirect href={"/(tabs)/Privacy"} />;
 
       default:
         return null;

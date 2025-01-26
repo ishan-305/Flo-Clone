@@ -117,7 +117,7 @@ export default function PrivacyScreen({ navigation }) {
         <TouchableOpacity
           style={[styles.nextButton, !allChecked && styles.nextButtonDisabled]}
           disabled={!allChecked}
-          onPress={() => router.push("/(auth)/Auth")}
+          onPress={() => router.push("/(tabs)/Start")}
         >
           <Text style={styles.nextButtonText}>Next</Text>
         </TouchableOpacity>
