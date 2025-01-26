@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Calendar } from "react-native-calendars";
-import BottomNavBar from "../../src/components/BottomNavBar";
+import BottomNavBar from "../../src/copmponents/BottomNavBar";
 
 export default function App() {
   const [selectedDate, setSelectedDate] = useState(

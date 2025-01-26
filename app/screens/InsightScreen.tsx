@@ -28,18 +28,6 @@ const InsightsScreen = () => {
       </View>
 
       <ScrollView>
-        <View style={styles.tabsContainer}>
-          <TouchableOpacity style={[styles.tab, styles.activeTab]}>
-            <Text style={[styles.tabText, styles.activeTabText]}>Popular</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.tab, { marginHorizontal: 50 }]}>
-            <Text style={styles.tabText}>Following</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.tab, { marginHorizontal: 50 }]}>
-            <Text style={styles.tabText}>Saved</Text>
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.categorySection}>
           <View style={styles.categoryRow}>
             <TouchableOpacity style={styles.categoryItem}>
@@ -91,6 +79,40 @@ const InsightsScreen = () => {
           </ScrollView>
         </View>
 
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Sex</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.darkBackground]}>
+                <Icon name="play-circle" size={24} color="#fff" />
+                <Text style={styles.articleImageText}>
+                  Mastering your orgasm
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.pinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  9 life-changing masturbation tips
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.pinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  9 life-changing masturbation tips
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.articleCard}>
+              <View style={[styles.articleImage, styles.pinkBackground]}>
+                <Text style={styles.articleImageText}>
+                  9 life-changing masturbation tips
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
+        </View>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Sex</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -186,6 +208,7 @@ const styles = StyleSheet.create({
   },
   categorySection: {
     padding: 15,
+    marginTop: 20, // Add margin above the category section
   },
   categoryRow: {
     flexDirection: "row",
